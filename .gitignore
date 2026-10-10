@@ -14,6 +14,9 @@ server/.env
 server/.env.*
 !server/.env.example
 
+# ESP32 secrets — NEVER commit
+esp32/AquiferSentinel/secrets.h
+
 # Logs
 logs/
 *.log
