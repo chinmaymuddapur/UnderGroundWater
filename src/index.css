@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    @apply bg-[#0a0f1e] text-gray-100 font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-[#0d1529];
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#1e3a5f] rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyan-700;
+  }
+}
+
+@layer utilities {
+  .glow-cyan {
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.15);
+  }
+  .glow-green {
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.15);
+  }
+  .glow-amber {
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.15);
+  }
+  .glow-red {
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.15);
+  }
+  .card {
+    @apply bg-[#0d1529] border border-[#1e3a5f] rounded-xl;
+  }
+  .card-sm {
+    @apply bg-[#111d35] border border-[#1a2f50] rounded-lg;
+  }
+  .grid-bg {
+    background-image: 
+      linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+  .btn-primary {
+    @apply px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-lg text-sm font-medium transition-colors;
+  }
+  .btn-secondary {
+    @apply px-4 py-2 bg-[#1e3a5f] hover:bg-[#2a4f7c] text-cyan-400 rounded-lg text-sm font-medium transition-colors border border-[#2a4f7c];
+  }
+  .btn-danger {
+    @apply px-4 py-2 bg-red-900/50 hover:bg-red-800/60 text-red-400 rounded-lg text-sm font-medium transition-colors border border-red-800/50;
+  }
+  .btn-warning {
+    @apply px-4 py-2 bg-amber-900/50 hover:bg-amber-800/60 text-amber-400 rounded-lg text-sm font-medium transition-colors border border-amber-800/50;
+  }
+  .label {
+    @apply text-xs text-gray-400 uppercase tracking-wider font-medium;
+  }
+  .value-lg {
+    @apply text-3xl font-bold tabular-nums;
+  }
+  .value-md {
+    @apply text-xl font-semibold tabular-nums;
+  }
+  .section-title {
+    @apply text-sm font-semibold text-gray-300 uppercase tracking-wider;
+  }
+}
+
+/* Animated water fill */
+@keyframes waterRise {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes flowPulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-water {
+  animation: waterRise 3s ease-in-out infinite;
+}
+.animate-flow {
+  animation: flowPulse 1.5s ease-in-out infinite;
+}
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Recharts overrides */
+.recharts-cartesian-grid line {
+  stroke: rgba(30, 58, 95, 0.5) !important;
+}
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}

@@ -1,0 +1,35 @@
+# ─── Render.com Deployment Configuration ─────────────────────────────────────
+# Deploy the backend to Render as a Web Service.
+#
+# MANUAL STEPS after deploying:
+#   1. Add a Disk in Render dashboard: name "telemetry-db", mount path "/data"
+#   2. Set environment variables in Render dashboard (see server/.env.example):
+#        DEVICE_AUTH_TOKEN  = <generate with: node -e "console.log(require('crypto').randomBytes(32).toString('hex'))">
+#        ALLOWED_ORIGINS    = https://your-app.netlify.app
+#        DB_PATH            = /data/telemetry.db
+#   3. Copy DEVICE_AUTH_TOKEN into the ESP32 sketch as API_AUTH_TOKEN.
+
+services:
+  - type: web
+    name: aquifer-sentinel-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"        # Render assigns this automatically; value here is a fallback
+      - key: DB_PATH
+        value: /data/telemetry.db
+      - key: STALE_THRESHOLD_SECONDS
+        value: "15"
+      - key: MAX_HISTORY_ROWS
+        value: "300"
+      # DEVICE_AUTH_TOKEN and ALLOWED_ORIGINS must be set manually in the dashboard
+      # — do NOT put secrets in this file.
+    disk:
+      name: telemetry-db
+      mountPath: /data
+      sizeGB: 1

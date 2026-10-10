@@ -1,0 +1,22 @@
+{
+  "name": "aquifer-sentinel-backend",
+  "version": "1.1.0",
+  "description": "Smart Aquifer Sentinel — production backend for ESP32 telemetry ingestion",
+  "type": "commonjs",
+  "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "optionalDependencies": {
+    "better-sqlite3": "^9.4.3"
+  }
+}
